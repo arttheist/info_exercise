@@ -56,7 +56,7 @@ public class UserInterface
 
         display = new JTextField();
         contentPane.add(display, BorderLayout.NORTH);
-
+        
         JPanel buttonPanel = new JPanel(new GridLayout(7, 4));
 	 
  // add Buttons for the different Math Formats
@@ -93,7 +93,7 @@ public class UserInterface
             
             addButton(buttonPanel, "0");
             addButton(buttonPanel, ",");
-            addButton(buttonPanel, "C");
+            addButton(buttonPanel, "DEL");
             addButton(buttonPanel, "=");
             
         contentPane.add(buttonPanel, BorderLayout.CENTER);
@@ -134,7 +134,13 @@ public class UserInterface
            command.equals("6") ||
            command.equals("7") ||
            command.equals("8") ||
-           command.equals("9")) {
+           command.equals("9") ||
+           command.equals("A") ||
+           command.equals("B") ||
+           command.equals("C") ||
+           command.equals("D") ||
+           command.equals("E") ||
+           command.equals("F")) {
             int number = Integer.parseInt(command);
             calc.numberPressed(number);
         }
@@ -144,10 +150,16 @@ public class UserInterface
         else if(command.equals("-")) {
             calc.minus();
         }
+        else if(command.equals("x")) {
+            calc.multiply();
+        }
+        else if(command.equals("Ö")) {
+            calc.divide();
+        }
         else if(command.equals("=")) {
             calc.equals();
         }
-        else if(command.equals("C")) {
+        else if(command.equals("DEL")) {
             calc.clear();
         }
         else if(command.equals("?")) {
