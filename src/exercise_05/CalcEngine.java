@@ -3,8 +3,8 @@ package exercise_05;
 /**
  * The main part of the calculator doing the calculations.
  * 
- * @author David J. Barnes and Michael Kolling
- * @version 2008.03.30
+ * @author Till Leinen & Rene Vos
+ * @version 1.0
  */
 public class CalcEngine {
 	// The calculator's state is maintained in three fields:
@@ -106,8 +106,10 @@ public class CalcEngine {
 	/**
 	 * @return The author of this engine.
 	 */
+
+// changed the author
 	public String getAuthor() {
-		return "David J. Barnes and Michael Kolling";
+		return "Till Leinen & Rene Vos";
 	}
 
 	/**

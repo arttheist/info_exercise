@@ -9,8 +9,8 @@ import javax.swing.border.*;
  * done here. This class is responsible just for putting up the display on 
  * screen. It then refers to the "CalcEngine" to do all the real work.
  * 
- * @author David J. Barnes and Michael Kolling
- * @version 2008.03.30
+ * @author Till Leinen & Rene Vos
+ * @version 1.0
  */
 public class UserInterface
     implements ActionListener
@@ -57,25 +57,43 @@ public class UserInterface
         display = new JTextField();
         contentPane.add(display, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(4, 4));
-            addButton(buttonPanel, "7");
+        JPanel buttonPanel = new JPanel(new GridLayout(7, 4));
+	 
+ // add Buttons for the different Math Formats
+        	addButton(buttonPanel, "DEC");
+	        addButton(buttonPanel, "HEX");
+	        addButton(buttonPanel, "BIN");
+	        addButton(buttonPanel, "OCT");
+        
+// add Buttons for Hex
+	        addButton(buttonPanel, "D");
+            addButton(buttonPanel, "E");
+            addButton(buttonPanel, "F");
+            addButton(buttonPanel, "?");
+
+            addButton(buttonPanel, "A");
+            addButton(buttonPanel, "B");
+            addButton(buttonPanel, "C");
+            addButton(buttonPanel, "+");
+            
+        	addButton(buttonPanel, "7");
             addButton(buttonPanel, "8");
             addButton(buttonPanel, "9");
-            addButton(buttonPanel, "C");
+            addButton(buttonPanel, "-");
             
             addButton(buttonPanel, "4");
             addButton(buttonPanel, "5");
             addButton(buttonPanel, "6");
-            addButton(buttonPanel, "?");
+            addButton(buttonPanel, "x");
             
             addButton(buttonPanel, "1");
             addButton(buttonPanel, "2");
             addButton(buttonPanel, "3");
-            buttonPanel.add(new JLabel(" "));
+            addButton(buttonPanel, "Ö");
             
             addButton(buttonPanel, "0");
-            addButton(buttonPanel, "+");
-            addButton(buttonPanel, "-");
+            addButton(buttonPanel, ",");
+            addButton(buttonPanel, "C");
             addButton(buttonPanel, "=");
             
         contentPane.add(buttonPanel, BorderLayout.CENTER);

@@ -4,8 +4,8 @@ package exercise_05;
  * The main class of a simple calculator. Create one of these and you'll get the
  * calculator on screen.
  * 
- * @author David J. Barnes and Michael Kolling
- * @version 2008.03.30
+ * @author Till Leinen & Rene Vos
+ * @version 1.0
  */
 public class Calculator {
 	private CalcEngine engine;
