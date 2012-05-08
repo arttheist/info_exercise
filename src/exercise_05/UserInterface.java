@@ -60,10 +60,10 @@ public class UserInterface
         JPanel buttonPanel = new JPanel(new GridLayout(7, 4));
 	 
  // add Buttons for the different Math Formats
-        	addButton(buttonPanel, "DEC");
-	        addButton(buttonPanel, "HEX");
-	        addButton(buttonPanel, "BIN");
-	        addButton(buttonPanel, "OCT");
+        	addRadioButton(buttonPanel, "DEC", true);
+	        addRadioButton(buttonPanel, "HEX", false);
+	        addRadioButton(buttonPanel, "BIN", false);
+	        addRadioButton(buttonPanel, "OCT", false);
         
 // add Buttons for Hex
 	        addButton(buttonPanel, "D");
@@ -115,6 +115,19 @@ public class UserInterface
         button.addActionListener(this);
         panel.add(button);
     }
+    
+    /**
+     * Add a button to the button panel.
+     * @param panel The panel to receive the button.
+     * @param buttonText The text for the button.
+     * @param radioValue The value of the Radiobutton
+     */
+    private void addRadioButton(Container panel, String buttonText, Boolean radioValue)
+    {
+        JRadioButton radioButton = new JRadioButton(buttonText, radioValue);
+        radioButton.addActionListener(this);
+        panel.add(radioButton);
+    }
 
     /**
      * An interface action has been performed.
@@ -125,6 +138,7 @@ public class UserInterface
     {
         String command = event.getActionCommand();
 
+       
         if(command.equals("0") ||
            command.equals("1") ||
            command.equals("2") ||
