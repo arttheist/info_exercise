@@ -21,6 +21,10 @@ public class UserInterface
     private JFrame frame;
     private JTextField display;
     private JLabel status;
+    
+ // add a Buttongroup for the Math Formats
+    private ButtonGroup mathFormats = new ButtonGroup();
+
 
     /**
      * Create a user interface.
@@ -59,6 +63,7 @@ public class UserInterface
         
         JPanel buttonPanel = new JPanel(new GridLayout(7, 4));
 	 
+        
  // add Buttons for the different Math Formats
         	addRadioButton(buttonPanel, "DEC", true);
 	        addRadioButton(buttonPanel, "HEX", false);
@@ -127,6 +132,7 @@ public class UserInterface
         JRadioButton radioButton = new JRadioButton(buttonText, radioValue);
         radioButton.addActionListener(this);
         panel.add(radioButton);
+        mathFormats.add(radioButton);
     }
 
     /**
