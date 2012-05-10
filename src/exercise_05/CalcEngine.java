@@ -19,7 +19,7 @@ public class CalcEngine {
 	private char lastOperator;
 
 	// The current value (to be) shown in the display.
-	private int displayValue;
+	private String displayValue;
 	// The value of an existing left operand.
 	private int leftOperand;
 
@@ -34,7 +34,7 @@ public class CalcEngine {
 	 * @return The value that should currently be displayed on the calculator
 	 *         display.
 	 */
-	public int getDisplayValue() {
+	public String getDisplayValue() {
 		return displayValue;
 	}
 
@@ -48,12 +48,26 @@ public class CalcEngine {
 	public void numberPressed(int number) {
 		if (buildingDisplayValue) {
 			// Incorporate this digit.
-			displayValue = displayValue * 10 + number;
+			displayValue = Integer.toString(Integer.parseInt(displayValue) * 10 + number);
 		} else {
 			// Start building a new number.
-			displayValue = number;
+			displayValue = Integer.toString(number);
 			buildingDisplayValue = true;
 		}
+	}
+	
+	/**
+	 * A Hex Number was pressed
+	 * 
+	 * @param hexNumber
+	 *            The Hex number pressed on the calculator.
+	 */
+	public void hexPressed(){
+		System.out.println("ich habe hex gedrückt");
+	}
+	
+	public void hexNumberPressed(String hexNumber) {
+			displayValue = hexNumber;
 	}
 
 	/**
@@ -108,7 +122,7 @@ public class CalcEngine {
 		lastOperator = '?';
 		haveLeftOperand = false;
 		buildingDisplayValue = false;
-		displayValue = 0;
+		displayValue = "0";
 	}
 
 	/**
@@ -141,25 +155,25 @@ public class CalcEngine {
 	private void calculateResult() {
 		switch (lastOperator) {
 		case '+':
-			displayValue = leftOperand + displayValue;
+			displayValue = Integer.toString(leftOperand + (Integer.parseInt(displayValue)));
 			haveLeftOperand = true;
-			leftOperand = displayValue;
+			leftOperand = Integer.parseInt(displayValue);
 			break;
 		case '-':
-			displayValue = leftOperand - displayValue;
+			displayValue = Integer.toString(leftOperand - (Integer.parseInt(displayValue)));
 			haveLeftOperand = true;
-			leftOperand = displayValue;
+			leftOperand = Integer.parseInt(displayValue);
 			break;
 // new cases for multiply and divide		
 		case '*':
-			displayValue = leftOperand * displayValue;
+			displayValue = Integer.toString(leftOperand * (Integer.parseInt(displayValue)));
 			haveLeftOperand = true;
-			leftOperand = displayValue;
+			leftOperand = Integer.parseInt(displayValue);
 			break;
 		case '/':
-			displayValue = leftOperand / displayValue;
+			displayValue = Integer.toString(leftOperand / (Integer.parseInt(displayValue)));
 			haveLeftOperand = true;
-			leftOperand = displayValue;
+			leftOperand = Integer.parseInt(displayValue);
 			break;
 		default:
 			keySequenceError();
@@ -189,7 +203,7 @@ public class CalcEngine {
 			// The displayValue now becomes the left operand of this
 			// new operator.
 			haveLeftOperand = true;
-			leftOperand = displayValue;
+			leftOperand = Integer.parseInt(displayValue);
 		}
 		lastOperator = operator;
 		buildingDisplayValue = false;

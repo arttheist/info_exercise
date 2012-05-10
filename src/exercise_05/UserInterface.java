@@ -24,6 +24,7 @@ public class UserInterface
     
  // add a Buttongroup for the Math Formats
     private ButtonGroup mathFormats = new ButtonGroup();
+    private ButtonGroup hexNumbers = new ButtonGroup();
 
 
     /**
@@ -71,14 +72,14 @@ public class UserInterface
 	        addRadioButton(buttonPanel, "OCT", false);
         
 // add Buttons for Hex
-	        addButton(buttonPanel, "D");
-            addButton(buttonPanel, "E");
-            addButton(buttonPanel, "F");
+	        addHexButton(buttonPanel, "D");
+            addHexButton(buttonPanel, "E");
+            addHexButton(buttonPanel, "F");
             addButton(buttonPanel, "?");
 
-            addButton(buttonPanel, "A");
-            addButton(buttonPanel, "B");
-            addButton(buttonPanel, "C");
+            addHexButton(buttonPanel, "A");
+            addHexButton(buttonPanel, "B");
+            addHexButton(buttonPanel, "C");
             addButton(buttonPanel, "+");
             
         	addButton(buttonPanel, "7");
@@ -121,6 +122,15 @@ public class UserInterface
         panel.add(button);
     }
     
+    private void addHexButton(Container panel, String buttonText)
+    {
+        JButton button = new JButton(buttonText);
+        button.addActionListener(this);
+        panel.add(button);
+        hexNumbers.add(button);
+
+    }
+    
     /**
      * Add a button to the button panel.
      * @param panel The panel to receive the button.
@@ -154,15 +164,24 @@ public class UserInterface
            command.equals("6") ||
            command.equals("7") ||
            command.equals("8") ||
-           command.equals("9") ||
-           command.equals("A") ||
-           command.equals("B") ||
-           command.equals("C") ||
-           command.equals("D") ||
-           command.equals("E") ||
-           command.equals("F")) {
+           command.equals("9")) {
             int number = Integer.parseInt(command);
             calc.numberPressed(number);
+        }
+        else if(command.equals("HEX")){
+        	calc.hexPressed();
+        	changeToHex();
+        }
+        
+        else if(
+        		command.equals("A") || 
+        		command.equals("B") || 
+        		command.equals("C") || 
+        		command.equals("D") || 
+        		command.equals("E") ||
+        		command.equals("F")) {
+        	String hexNumber = command;
+        	calc.hexNumberPressed(hexNumber);
         }
         else if(command.equals("+")) {
             calc.plus();
@@ -190,7 +209,12 @@ public class UserInterface
         redisplay();
     }
 
-    /**
+    
+    
+    private void changeToHex() {
+    }
+
+	/**
      * Update the interface display to show the current value of the 
      * calculator.
      */
