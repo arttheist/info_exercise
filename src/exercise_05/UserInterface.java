@@ -103,7 +103,7 @@ public class UserInterface
             addButton(buttonPanel, "/");
             
             addButton(buttonPanel, "0");
-            addButton(buttonPanel, ",");
+            buttonPanel.add(new JLabel(" "));
             addButton(buttonPanel, "DEL");
             addButton(buttonPanel, "=");
             
@@ -241,9 +241,6 @@ public class UserInterface
         }
         else if(command.equals("DEL")) {
             calc.clear();
-        }
-        else if(command.equals(",")) {
-            calc.comma();
         }
         else if(command.equals("?")) {
             showInfo();

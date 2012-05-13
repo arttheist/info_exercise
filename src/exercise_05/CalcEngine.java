@@ -25,8 +25,6 @@ public class CalcEngine {
 	
 	// add Booleans for the mathformat
     private String mathSystem = "DEC";
-    
-    private boolean haveComma;
 	
 	/**
 	 * Create a CalcEngine.
@@ -108,7 +106,7 @@ public class CalcEngine {
 			displayValue = Integer.toString(Integer.parseInt(displayValue,2));
 		}
 		if(currentSystem.equals("BIN") && changingSystem.equals("HEX")) {
-			displayValue = Integer.toHexString(Integer.parseInt(displayValue,2));
+			displayValue = Integer.toHexString(Integer.parseInt(displayValue,2)).toUpperCase();
 		}
 		if(currentSystem.equals("BIN") && changingSystem.equals("OCT")) {
 			displayValue = Integer.toOctalString(Integer.parseInt(displayValue,2));
@@ -117,7 +115,7 @@ public class CalcEngine {
 			displayValue = Integer.toString(Integer.parseInt(displayValue,8));
 		}
 		if(currentSystem.equals("OCT") && changingSystem.equals("HEX")) {
-			displayValue = Integer.toHexString(Integer.parseInt(displayValue,8));
+			displayValue = Integer.toHexString(Integer.parseInt(displayValue,8)).toUpperCase();
 		}
 		if(currentSystem.equals("OCT") && changingSystem.equals("BIN")) {
 			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue,8));
@@ -179,15 +177,7 @@ public class CalcEngine {
 		lastOperator = '?';
 		haveLeftOperand = false;
 		buildingDisplayValue = false;
-		haveComma = false;
 		displayValue = "0";
-	}
-
-	public void comma() {
-		if (!haveComma) {
-			displayValue+=",";
-			haveComma = true;
-		}
 	}
 	
 	/**
@@ -249,23 +239,23 @@ public class CalcEngine {
 		if (mathSystem.equals("HEX")) {
 			switch (lastOperator) {
 			case '+':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) + (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) + (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
 			case '-':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) - (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) - (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
 	// new cases for multiply and divide		
 			case '*':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) * (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) * (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
 			case '/':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) / (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) / (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
@@ -321,7 +311,7 @@ public class CalcEngine {
 				leftOperand = displayValue;
 				break;
 			case '/':
-				displayValue = Integer.toString(Integer.parseInt(leftOperand) / (Integer.parseInt(displayValue)));
+				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) / (Integer.parseInt(displayValue,8)));
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
