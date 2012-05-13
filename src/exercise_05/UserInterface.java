@@ -100,7 +100,7 @@ public class UserInterface
             addButton(buttonPanel, "1");
             addOctButton(buttonPanel, "2");
             addOctButton(buttonPanel, "3");
-            addButton(buttonPanel, "Ö");
+            addButton(buttonPanel, "/");
             
             addButton(buttonPanel, "0");
             addButton(buttonPanel, ",");
@@ -233,7 +233,7 @@ public class UserInterface
         else if(command.equals("x")) {
             calc.multiply();
         }
-        else if(command.equals("Ö")) {
+        else if(command.equals("/")) {
             calc.divide();
         }
         else if(command.equals("=")) {
