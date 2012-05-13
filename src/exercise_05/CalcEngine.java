@@ -25,6 +25,8 @@ public class CalcEngine {
 	
 	// add Booleans for the mathformat
     private String mathSystem = "DEC";
+    
+    private boolean haveComma;
 	
 	/**
 	 * Create a CalcEngine.
@@ -75,19 +77,6 @@ public class CalcEngine {
 		}
 	}
 	
-	
-	public void decPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
-	public void hexPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
-	public void binPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
-	public void octPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
 
 
 	/**
@@ -190,9 +179,17 @@ public class CalcEngine {
 		lastOperator = '?';
 		haveLeftOperand = false;
 		buildingDisplayValue = false;
+		haveComma = false;
 		displayValue = "0";
 	}
 
+	public void comma() {
+		if (!haveComma) {
+			displayValue+=",";
+			haveComma = true;
+		}
+	}
+	
 	/**
 	 * @return The title of this calculation engine.
 	 */

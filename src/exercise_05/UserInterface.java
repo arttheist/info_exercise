@@ -242,6 +242,9 @@ public class UserInterface
         else if(command.equals("DEL")) {
             calc.clear();
         }
+        else if(command.equals(",")) {
+            calc.comma();
+        }
         else if(command.equals("?")) {
             showInfo();
         }
