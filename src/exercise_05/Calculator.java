@@ -9,6 +9,7 @@ package exercise_05;
  */
 public class Calculator {
 	private CalcEngine engine;
+
 	private UserInterface gui;
 
 	/**
@@ -26,6 +27,7 @@ public class Calculator {
 		gui.setVisible(true);
 	}
 
+	
 	public static void main(String[] arguments) {
 		(new Calculator()).show();
 	}

@@ -22,7 +22,10 @@ public class CalcEngine {
 	private String displayValue;
 	// The value of an existing left operand.
 	private int leftOperand;
-
+	
+	// add Booleans for the mathformat
+    private String mathSystem = "DEC";
+	
 	/**
 	 * Create a CalcEngine.
 	 */
@@ -30,6 +33,20 @@ public class CalcEngine {
 		clear();
 	}
 
+	/**
+     * Getter & Setter of the String mathSystem 
+     * 
+     * 
+     */
+    
+    public void setMathSystem(String system) {
+    	mathSystem = system;
+    }
+    
+    public String getMathSystem(){
+    	return mathSystem;
+    }
+	
 	/**
 	 * @return The value that should currently be displayed on the calculator
 	 *         display.
@@ -45,31 +62,83 @@ public class CalcEngine {
 	 * @param number
 	 *            The number pressed on the calculator.
 	 */
-	public void numberPressed(int number) {
+	
+	// modified so that you can press hexadecimal numbers
+	public void numberPressed(String number) {
 		if (buildingDisplayValue) {
 			// Incorporate this digit.
-			displayValue = Integer.toString(Integer.parseInt(displayValue) * 10 + number);
+			displayValue += number;
 		} else {
 			// Start building a new number.
-			displayValue = Integer.toString(number);
+			displayValue = number;
 			buildingDisplayValue = true;
 		}
 	}
 	
-	/**
-	 * A Hex Number was pressed
-	 * 
-	 * @param hexNumber
-	 *            The Hex number pressed on the calculator.
-	 */
-	public void hexPressed(){
-		System.out.println("ich habe hex gedrückt");
-	}
 	
-	public void hexNumberPressed(String hexNumber) {
-			displayValue = hexNumber;
+	public void decPressed(){
+		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
+	}
+	public void hexPressed(){
+		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
+	}
+	public void binPressed(){
+		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
+	}
+	public void octPressed(){
+		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
 	}
 
+
+	/**
+	 * A MathSystem button was pressed
+	 * @param changingSystem The MathSystem that was pressed
+	 * @param currentSystem The MathSystem before something was pressed
+	 */
+	
+	public void changeSystem(String changingSystem, String currentSystem){
+		if(currentSystem.equals("DEC") && changingSystem.equals("HEX")) {
+			displayValue = Integer.toHexString(Integer.parseInt(displayValue)).toUpperCase();
+		}
+		if(currentSystem.equals("DEC") && changingSystem.equals("BIN")) {
+			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue));
+		}
+		if(currentSystem.equals("DEC") && changingSystem.equals("OCT")) {
+			displayValue = Integer.toOctalString(Integer.parseInt(displayValue));
+		}
+		if(currentSystem.equals("HEX") && changingSystem.equals("DEC")) {
+			displayValue = Integer.toString(Integer.parseInt(displayValue,16));
+		}
+		if(currentSystem.equals("HEX") && changingSystem.equals("BIN")) {
+			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue,16));
+		}
+		if(currentSystem.equals("HEX") && changingSystem.equals("OCT")) {
+			displayValue = Integer.toOctalString(Integer.parseInt(displayValue,16));
+		}
+		if(currentSystem.equals("BIN") && changingSystem.equals("DEC")) {
+			displayValue = Integer.toString(Integer.parseInt(displayValue,2));
+		}
+		if(currentSystem.equals("BIN") && changingSystem.equals("HEX")) {
+			displayValue = Integer.toHexString(Integer.parseInt(displayValue,2));
+		}
+		if(currentSystem.equals("BIN") && changingSystem.equals("OCT")) {
+			displayValue = Integer.toOctalString(Integer.parseInt(displayValue,2));
+		}
+		if(currentSystem.equals("OCT") && changingSystem.equals("DEC")) {
+			displayValue = Integer.toString(Integer.parseInt(displayValue,8));
+		}
+		if(currentSystem.equals("OCT") && changingSystem.equals("HEX")) {
+			displayValue = Integer.toHexString(Integer.parseInt(displayValue,8));
+		}
+		if(currentSystem.equals("OCT") && changingSystem.equals("BIN")) {
+			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue,8));
+		}
+		
+		mathSystem = changingSystem;
+		System.out.println(changingSystem);
+	}
+	
+	
 	/**
 	 * The 'plus' button was pressed.
 	 */
