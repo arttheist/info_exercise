@@ -135,7 +135,6 @@ public class CalcEngine {
 		}
 		
 		mathSystem = changingSystem;
-		System.out.println(changingSystem);
 	}
 	
 	
