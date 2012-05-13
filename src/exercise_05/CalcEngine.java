@@ -21,7 +21,7 @@ public class CalcEngine {
 	// The current value (to be) shown in the display.
 	private String displayValue;
 	// The value of an existing left operand.
-	private int leftOperand;
+	private String leftOperand;
 	
 	// add Booleans for the mathformat
     private String mathSystem = "DEC";
@@ -222,31 +222,117 @@ public class CalcEngine {
 	 * result becomes both the leftOperand and the new display value.
 	 */
 	private void calculateResult() {
-		switch (lastOperator) {
-		case '+':
-			displayValue = Integer.toString(leftOperand + (Integer.parseInt(displayValue)));
-			haveLeftOperand = true;
-			leftOperand = Integer.parseInt(displayValue);
-			break;
-		case '-':
-			displayValue = Integer.toString(leftOperand - (Integer.parseInt(displayValue)));
-			haveLeftOperand = true;
-			leftOperand = Integer.parseInt(displayValue);
-			break;
-// new cases for multiply and divide		
-		case '*':
-			displayValue = Integer.toString(leftOperand * (Integer.parseInt(displayValue)));
-			haveLeftOperand = true;
-			leftOperand = Integer.parseInt(displayValue);
-			break;
-		case '/':
-			displayValue = Integer.toString(leftOperand / (Integer.parseInt(displayValue)));
-			haveLeftOperand = true;
-			leftOperand = Integer.parseInt(displayValue);
-			break;
-		default:
-			keySequenceError();
-			break;
+		if (mathSystem.equals("DEC")) {
+			switch (lastOperator) {
+			case '+':
+				displayValue = Integer.toString(Integer.parseInt(leftOperand) + (Integer.parseInt(displayValue)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '-':
+				displayValue = Integer.toString(Integer.parseInt(leftOperand) - (Integer.parseInt(displayValue)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+	// new cases for multiply and divide		
+			case '*':
+				displayValue = Integer.toString(Integer.parseInt(leftOperand) * (Integer.parseInt(displayValue)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '/':
+				displayValue = Integer.toString(Integer.parseInt(leftOperand) / (Integer.parseInt(displayValue)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			default:
+				keySequenceError();
+				break;
+			}
+		}
+		if (mathSystem.equals("HEX")) {
+			switch (lastOperator) {
+			case '+':
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) + (Integer.parseInt(displayValue,16)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '-':
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) - (Integer.parseInt(displayValue,16)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+	// new cases for multiply and divide		
+			case '*':
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) * (Integer.parseInt(displayValue,16)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '/':
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) / (Integer.parseInt(displayValue,16)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			default:
+				keySequenceError();
+				break;
+			}
+		}
+		if (mathSystem.equals("BIN")) {
+			switch (lastOperator) {
+			case '+':
+				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) + (Integer.parseInt(displayValue)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '-':
+				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) - (Integer.parseInt(displayValue)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+	// new cases for multiply and divide		
+			case '*':
+				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) * (Integer.parseInt(displayValue,2)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '/':
+				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) / (Integer.parseInt(displayValue,2)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			default:
+				keySequenceError();
+				break;
+			}
+		}
+		if (mathSystem.equals("OCT")) {
+			switch (lastOperator) {
+			case '+':
+				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) + (Integer.parseInt(displayValue,8)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '-':
+				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) - (Integer.parseInt(displayValue,8)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+	// new cases for multiply and divide		
+			case '*':
+				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) * (Integer.parseInt(displayValue,8)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			case '/':
+				displayValue = Integer.toString(Integer.parseInt(leftOperand) / (Integer.parseInt(displayValue)));
+				haveLeftOperand = true;
+				leftOperand = displayValue;
+				break;
+			default:
+				keySequenceError();
+				break;
+			}
 		}
 	}
 
@@ -272,7 +358,7 @@ public class CalcEngine {
 			// The displayValue now becomes the left operand of this
 			// new operator.
 			haveLeftOperand = true;
-			leftOperand = Integer.parseInt(displayValue);
+			leftOperand = displayValue;
 		}
 		lastOperator = operator;
 		buildingDisplayValue = false;
