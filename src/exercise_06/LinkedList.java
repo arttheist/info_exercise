@@ -29,6 +29,7 @@ public class LinkedList<E> {
 		}
 		Node<E> last = new Node<E>(s);
 		current.setNext(last);
+		last.setNext(dummyNode);
 	}
 	
 	public boolean isEmpty() {
