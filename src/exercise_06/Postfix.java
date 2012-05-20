@@ -1,7 +1,25 @@
 package exercise_06;
 
+import java.io.*;;
+
 public class Postfix {
 
+	public static void main(String[] args) {
+		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("please Input a Term: ");
+		String line = null;
+		try {
+		while ((line = console.readLine()) != null) {
+			System.out.println("The Result of the Term is: " + evaluate(infixToPostfix(console)));
+		}
+		} catch (IOException e) {
+			// should never happen
+			e.printStackTrace();
+		}
+		System.out.println("Ihre Eingabe war: " + line);
+
+	}
+	
 	// A Method that takes a String representing a postfix expression and determines the value.
 	public int evaluate (String pfx){
 		
