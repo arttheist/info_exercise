@@ -98,7 +98,7 @@ public class CalcEngine {
 	
 	public void changeSystem(String changingSystem, String currentSystem){
 		if(currentSystem.equals("DEC") && changingSystem.equals("HEX")) {
-			displayValue = Integer.toHexString(Integer.parseInt(displayValue)).toUpperCase();
+			displayValue = Float.toHexString(Float.parseFloat(displayValue)).toUpperCase();
 		}
 		if(currentSystem.equals("DEC") && changingSystem.equals("BIN")) {
 			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue));
