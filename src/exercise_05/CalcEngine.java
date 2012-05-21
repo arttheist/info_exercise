@@ -75,19 +75,6 @@ public class CalcEngine {
 		}
 	}
 	
-	
-	public void decPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
-	public void hexPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
-	public void binPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
-	public void octPressed(){
-		displayValue = Integer.toHexString(Integer.parseInt(displayValue,16));
-	}
 
 
 	/**
@@ -119,7 +106,7 @@ public class CalcEngine {
 			displayValue = Integer.toString(Integer.parseInt(displayValue,2));
 		}
 		if(currentSystem.equals("BIN") && changingSystem.equals("HEX")) {
-			displayValue = Integer.toHexString(Integer.parseInt(displayValue,2));
+			displayValue = Integer.toHexString(Integer.parseInt(displayValue,2)).toUpperCase();
 		}
 		if(currentSystem.equals("BIN") && changingSystem.equals("OCT")) {
 			displayValue = Integer.toOctalString(Integer.parseInt(displayValue,2));
@@ -128,14 +115,13 @@ public class CalcEngine {
 			displayValue = Integer.toString(Integer.parseInt(displayValue,8));
 		}
 		if(currentSystem.equals("OCT") && changingSystem.equals("HEX")) {
-			displayValue = Integer.toHexString(Integer.parseInt(displayValue,8));
+			displayValue = Integer.toHexString(Integer.parseInt(displayValue,8)).toUpperCase();
 		}
 		if(currentSystem.equals("OCT") && changingSystem.equals("BIN")) {
 			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue,8));
 		}
 		
 		mathSystem = changingSystem;
-		System.out.println(changingSystem);
 	}
 	
 	
@@ -193,7 +179,7 @@ public class CalcEngine {
 		buildingDisplayValue = false;
 		displayValue = "0";
 	}
-
+	
 	/**
 	 * @return The title of this calculation engine.
 	 */
@@ -253,23 +239,23 @@ public class CalcEngine {
 		if (mathSystem.equals("HEX")) {
 			switch (lastOperator) {
 			case '+':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) + (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) + (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
 			case '-':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) - (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) - (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
 	// new cases for multiply and divide		
 			case '*':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) * (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) * (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
 			case '/':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) / (Integer.parseInt(displayValue,16)));
+				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) / (Integer.parseInt(displayValue,16))).toUpperCase();
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
@@ -325,7 +311,7 @@ public class CalcEngine {
 				leftOperand = displayValue;
 				break;
 			case '/':
-				displayValue = Integer.toString(Integer.parseInt(leftOperand) / (Integer.parseInt(displayValue)));
+				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) / (Integer.parseInt(displayValue,8)));
 				haveLeftOperand = true;
 				leftOperand = displayValue;
 				break;
