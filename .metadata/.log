@@ -1,0 +1,15 @@
+!SESSION 2012-05-25 10:54:59.224 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.6.0_31
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/arttheist/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/arttheist/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.ui 2 0 2012-05-25 10:55:18.532
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-05-25 10:55:18.532
+!MESSAGE Commands should really have a category: plug-in='org.rubypeople.rdt.ui', id='org.rubypeople.rdt.ui.edit.text.ruby.toggle.comment', categoryId='org.eubypeople.rdt.ui.category.source'
+
+!ENTRY org.eclipse.core.net 1 0 2012-05-25 10:55:22.870
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
