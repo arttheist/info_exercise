@@ -7,20 +7,30 @@ public class Stack<E> {
 		stack = new LinkedList<E>();
 	}
 	
+	public boolean isEmpty() {
+		return stack.isEmpty();
+	}
+	
 	public void push(E data) {
 		stack.appendLast(data);
 	}
-	
+
 	public E pop() throws StackUnderflow {
 		if( stack.isEmpty() ) 
 			throw new StackUnderflow();
 		return stack.removeLast();
 	}
+
+	public E top() throws StackUnderflow {
+		if( stack.isEmpty() ) 
+			throw new StackUnderflow();
+		return stack.getLast();		
+	}
 	
 	public String toString() {
 		String result = "";
 		while( !stack.isEmpty() ) {
-			result += stack.removeFirst().toString();
+			result += stack.removeLast().toString();
 		}
 		return result;
 	}

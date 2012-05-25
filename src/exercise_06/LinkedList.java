@@ -39,6 +39,14 @@ public class LinkedList<E> {
 		return false;
 	}
 	
+	public E getLast() {
+		Node<E> current = getFirstNode();
+		while(current.getNext() != dummyNode) {
+			current = current.getNext();
+		}
+		return current.getContent();
+	}
+	
 	public E removeLast() {
 		Node<E> current = getFirstNode();
 		while(current.getNext().getNext() != dummyNode) {
