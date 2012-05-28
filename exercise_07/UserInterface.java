@@ -1,7 +1,6 @@
 package exercise_07;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Enumeration;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -26,9 +25,6 @@ public class UserInterface
     
  // add a Buttongroup for the Math Formats
     private ButtonGroup mathFormats = new ButtonGroup();
-    private ButtonGroup hexNumbers = new ButtonGroup();
-    private ButtonGroup decNumbers = new ButtonGroup();
-    private ButtonGroup octNumbers = new ButtonGroup();
 
 
 
@@ -73,40 +69,40 @@ public class UserInterface
  // add Buttons for the different Math Formats
         	addRadioButton(buttonPanel, "DEC", true);
 	        addRadioButton(buttonPanel, "HEX", false);
-	        addRadioButton(buttonPanel, "BIN", false);
-	        addRadioButton(buttonPanel, "OCT", false);
+            buttonPanel.add(new JLabel(" "));
+            buttonPanel.add(new JLabel(" "));
             buttonPanel.add(new JLabel(" "));
 
 	        
 
 	        // add Buttons for Hex
-	        addHexButton(buttonPanel, "D");
-            addHexButton(buttonPanel, "E");
-            addHexButton(buttonPanel, "F");
+            buttonPanel.add(new JLabel(" "));
+            buttonPanel.add(new JLabel(" "));
+            buttonPanel.add(new JLabel(" "));
             addButton(buttonPanel, "?");
             addButton(buttonPanel, "+");
 
-            addHexButton(buttonPanel, "A");
-            addHexButton(buttonPanel, "B");
-            addHexButton(buttonPanel, "C");
+            buttonPanel.add(new JLabel(" "));
+            buttonPanel.add(new JLabel(" "));
+            buttonPanel.add(new JLabel(" "));
             addButton(buttonPanel, "(");
             addButton(buttonPanel, "-");
             
-        	addOctButton(buttonPanel, "7");
-            addDecButton(buttonPanel, "8");
-            addDecButton(buttonPanel, "9");
+        	addButton(buttonPanel, "7");
+            addButton(buttonPanel, "8");
+            addButton(buttonPanel, "9");
             addButton(buttonPanel, ")");
             addButton(buttonPanel, "*");
             
-            addOctButton(buttonPanel, "4");
-            addOctButton(buttonPanel, "5");
-            addOctButton(buttonPanel, "6");
+            addButton(buttonPanel, "4");
+            addButton(buttonPanel, "5");
+            addButton(buttonPanel, "6");
             buttonPanel.add(new JLabel(" "));
             addButton(buttonPanel, "/");
             
             addButton(buttonPanel, "1");
-            addOctButton(buttonPanel, "2");
-            addOctButton(buttonPanel, "3");
+            addButton(buttonPanel, "2");
+            addButton(buttonPanel, "3");
             buttonPanel.add(new JLabel(" "));
             addButton(buttonPanel, "^");
             
@@ -135,35 +131,6 @@ public class UserInterface
         button.addActionListener(this);
         panel.add(button);
     }
-    
-    private void addHexButton(Container panel, String buttonText)
-    {
-        JButton button = new JButton(buttonText);
-        button.addActionListener(this);
-        panel.add(button);
-        button.setEnabled(false);
-        hexNumbers.add(button);
-
-    }
-   
-    private void addDecButton(Container panel, String buttonText)
-    {
-        JButton button = new JButton(buttonText);
-        button.addActionListener(this);
-        panel.add(button);
-        decNumbers.add(button);
-    }
-    
-    private void addOctButton(Container panel, String buttonText)
-    {
-        JButton button = new JButton(buttonText);
-        button.addActionListener(this);
-        panel.add(button);
-        octNumbers.add(button);
-    }
-    
-    
-    
     
     
     /**
@@ -199,13 +166,7 @@ public class UserInterface
            command.equals("6") ||
            command.equals("7") ||
            command.equals("8") ||
-           command.equals("9") ||
-           command.equals("A") || 
-           command.equals("B") || 
-           command.equals("C") || 
-           command.equals("D") || 
-           command.equals("E") ||
-           command.equals("F")) {
+           command.equals("9")) {
             String number = command;
             calc.numberPressed(number);
         }
@@ -222,30 +183,15 @@ public class UserInterface
         	String bracket = command;
         	calc.bracketPressed(bracket);
         }
+        
         else if(command.equals("HEX")){
-        	enableHex();
-        	enableDec();
-        	enableOct();
         	calc.changeSystem("HEX", calc.getMathSystem());
         }
-        else if(command.equals("DEC")){
-        	disableHex();
-        	enableDec();
-        	enableOct();
+        
+        else if(command.equals("DEC")){	
         	calc.changeSystem("DEC", calc.getMathSystem());
         }
-        else if(command.equals("BIN")){
-        	disableHex();
-        	disableDec();
-        	disableOct();
-        	calc.changeSystem("BIN", calc.getMathSystem());
-        }
-        else if(command.equals("OCT")){
-        	disableHex();
-        	disableDec();
-        	enableOct();
-        	calc.changeSystem("OCT", calc.getMathSystem());
-        }
+        
         
         else if(command.equals("=")) {
             calc.equals();
@@ -260,51 +206,6 @@ public class UserInterface
 
         redisplay();
     }
-
-    
-    // Methods for enable/disable the Buttongroups
-    
-    // hexadecimal numbers
-    private void enableHex() {
-    	Enumeration<?> i = hexNumbers.getElements();
-    	while (i.hasMoreElements()) {
-    		((AbstractButton) i.nextElement()).setEnabled(true);
-    	}
-    }
-    private void disableHex() {
-    	Enumeration<?> i = hexNumbers.getElements();
-    	while (i.hasMoreElements()) {
-    		((AbstractButton) i.nextElement()).setEnabled(false);
-    	}
-    }
-    // decimal numbers
-    private void enableDec() {
-    	Enumeration<?> i = decNumbers.getElements();
-    	while (i.hasMoreElements()) {
-    		((AbstractButton) i.nextElement()).setEnabled(true);
-    	}
-    }
-    private void disableDec() {
-    	Enumeration<?> i = decNumbers.getElements();
-    	while (i.hasMoreElements()) {
-    		((AbstractButton) i.nextElement()).setEnabled(false);
-    	}
-    }
-    // octal numbers
-    private void enableOct() {
-    	Enumeration<?> i = octNumbers.getElements();
-    	while (i.hasMoreElements()) {
-    		((AbstractButton) i.nextElement()).setEnabled(true);
-    	}
-    }
-    private void disableOct() {
-    	Enumeration<?> i = octNumbers.getElements();
-    	while (i.hasMoreElements()) {
-    		((AbstractButton) i.nextElement()).setEnabled(false);
-    	}
-    }
-   
-
     
     
 	/**
