@@ -220,6 +220,9 @@ public class UserInterface
         	String operator = command;
         	calc.operatorPressed(operator);
         }
+        else if(command.equals("POSTFIX")){
+        	calc.postfix();
+        }
         else if(command.equals("HEX")){
         	enableHex();
         	enableDec();

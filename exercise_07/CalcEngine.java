@@ -170,7 +170,12 @@ public class CalcEngine {
 		lastOperator = '?';
 		haveLeftOperand = false;
 		buildingDisplayValue = false;
+		operatorDisplay = true;
 		displayValue = "0";
+	}
+	
+	public void postfix() {
+		
 	}
 	
 	/**
