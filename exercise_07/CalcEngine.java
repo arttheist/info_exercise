@@ -77,6 +77,9 @@ public class CalcEngine {
 		}
 	}
 	
+	public void bracketPressed(String bracket) {
+		displayValue+=bracket;
+	}
 	/**
 	 * A MathSystem button was pressed
 	 * @param changingSystem The MathSystem that was pressed
