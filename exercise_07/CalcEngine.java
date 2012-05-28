@@ -152,11 +152,9 @@ public class CalcEngine {
 		// so ensure that we really have a left operand, an operator
 		// and a right operand.
 		try {
-			displayValue = "" + termEvaluator.infixToPostfix(displayValue);
+			displayValue = "" + termEvaluator.evaluate(termEvaluator.infixToPostfix(displayValue));
 		} catch (InvalidInfixString e) {
 			displayValue = "Not a valid Term!";
-		} finally {
-			System.out.println("equals called");
 		}
 	}
 
