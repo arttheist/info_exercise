@@ -89,13 +89,13 @@ public class UserInterface
             addHexButton(buttonPanel, "A");
             addHexButton(buttonPanel, "B");
             addHexButton(buttonPanel, "C");
-            buttonPanel.add(new JLabel(" "));
+            addButton(buttonPanel, "(");
             addButton(buttonPanel, "-");
             
         	addOctButton(buttonPanel, "7");
             addDecButton(buttonPanel, "8");
             addDecButton(buttonPanel, "9");
-            buttonPanel.add(new JLabel(" "));
+            addButton(buttonPanel, ")");
             addButton(buttonPanel, "*");
             
             addOctButton(buttonPanel, "4");
