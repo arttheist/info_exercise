@@ -25,6 +25,8 @@ public class CalcEngine {
 	
 	// add Booleans for the mathformat
     private String mathSystem = "DEC";
+    
+    private Postfix termEvaluator = new Postfix();
 	
 	/**
 	 * Create a CalcEngine.
@@ -161,6 +163,8 @@ public class CalcEngine {
 		// This should completes the building of a second operand,
 		// so ensure that we really have a left operand, an operator
 		// and a right operand.
+		calculateResult();
+		/*
 		if (haveLeftOperand && lastOperator != '?' && buildingDisplayValue) {
 			calculateResult();
 			lastOperator = '?';
@@ -168,6 +172,7 @@ public class CalcEngine {
 		} else {
 			keySequenceError();
 		}
+		*/
 	}
 
 	/**
@@ -208,6 +213,12 @@ public class CalcEngine {
 	 * result becomes both the leftOperand and the new display value.
 	 */
 	private void calculateResult() {
+		try {
+			displayValue = "" + termEvaluator.evaluate(termEvaluator.infixToPostfix(displayValue));
+		} catch (InvalidInfixString e) {
+			displayValue = "Not a valid Term!";
+		}
+		/*
 		if (mathSystem.equals("DEC")) {
 			switch (lastOperator) {
 			case '+':
@@ -320,6 +331,7 @@ public class CalcEngine {
 				break;
 			}
 		}
+		*/
 	}
 
 	/**

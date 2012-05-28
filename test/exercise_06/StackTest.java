@@ -24,6 +24,6 @@ public class StackTest {
 		stack.push(1);
 		stack.push(2);
 		stack.push(3);
-		assertEquals("123", stack.toString());
+		assertEquals("321", stack.toString());
 	}
 }
