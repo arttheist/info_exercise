@@ -23,6 +23,9 @@ public class CalcEngine {
 	// add Booleans for the mathformat
     private String mathSystem = "DEC";
     
+    private int bracketCounter = 0;
+    
+    
     private Postfix termEvaluator = new Postfix();
 	
 	/**
@@ -99,8 +102,23 @@ public class CalcEngine {
 	}
 	
 	public void bracketPressed(String bracket) {
-		displayValue+=bracket;
+		if (bracket.equals("(")) {
+			if (displayValue.equals("0")) {
+				displayValue=bracket;
+			} else {
+				displayValue+=bracket;
+			}
+			bracketCounter++;
+		} 
+		if (bracket.equals(")")) {
+			if (bracketCounter>0) {
+				displayValue+=bracket;
+				bracketCounter--;
+			}
+		}
+		buildingDisplayValue = true;
 	}
+	
 	/**
 	 * A MathSystem button was pressed
 	 * @param changingSystem The MathSystem that was pressed
