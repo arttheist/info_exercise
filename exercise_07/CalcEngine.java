@@ -141,34 +141,7 @@ public class CalcEngine {
 	}
 	
 	
-	/**
-	 * The 'plus' button was pressed.
-	 */
-	public void plus() {
-		applyOperator('+');
-	}
-
-	/**
-	 * The 'minus' button was pressed.
-	 */
-	public void minus() {
-		applyOperator('-');
-	}
-
-// new Methods for pressing multiply and divide
-	/**
-	 * The 'multiply' button was pressed.
-	 */
-	public void multiply() {
-		applyOperator('*');
-	}
 	
-	/**
-	 * The 'divide' button was pressed.
-	 */
-	public void divide() {
-		applyOperator('/');
-	}
 	
 	/**
 	 * The '=' button was pressed.
