@@ -185,11 +185,11 @@ public class UserInterface
         }
         
         else if(command.equals("HEX")){
-        	calc.changeSystem("HEX", calc.getMathSystem());
+        	calc.setMathSystem("HEX");
         }
         
         else if(command.equals("DEC")){	
-        	calc.changeSystem("DEC", calc.getMathSystem());
+        	calc.setMathSystem("DEC");
         }
         
         

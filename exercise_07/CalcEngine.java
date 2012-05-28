@@ -13,17 +13,12 @@ public class CalcEngine {
 	// Are we already building a value in the display, or will the
 	// next digit be the first of a new one?
 	private boolean buildingDisplayValue = true;
-	// Has a left operand already been entered (or calculated)?
 	
+	// next is a single operator not another one?
 	private boolean operatorDisplay = true;
-	private boolean haveLeftOperand;
-	// The most recent operator that was entered.
-	private char lastOperator;
-
+	
 	// The current value (to be) shown in the display.
 	private String displayValue;
-	// The value of an existing left operand.
-	private String leftOperand;
 	
 	// add Booleans for the mathformat
     private String mathSystem = "DEC";
@@ -44,12 +39,17 @@ public class CalcEngine {
      */
     
     public void setMathSystem(String system) {
+    	if (system.equals("HEX")){
+    		displayValue=Integer.toHexString(Integer.parseInt(displayValue));
+    	}
+    	
+    	if (system.equals("DEC")){
+    		displayValue=Integer.toString(Integer.parseInt(displayValue,16));
+    	}
     	mathSystem = system;
     }
     
-    public String getMathSystem(){
-    	return mathSystem;
-    }
+    
 	
 	/**
 	 * @return The value that should currently be displayed on the calculator
@@ -107,46 +107,7 @@ public class CalcEngine {
 	 * @param currentSystem The MathSystem before something was pressed
 	 */
 	
-	public void changeSystem(String changingSystem, String currentSystem){
-		if(currentSystem.equals("DEC") && changingSystem.equals("HEX")) {
-			displayValue = Float.toHexString(Float.parseFloat(displayValue)).toUpperCase();
-		}
-		if(currentSystem.equals("DEC") && changingSystem.equals("BIN")) {
-			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue));
-		}
-		if(currentSystem.equals("DEC") && changingSystem.equals("OCT")) {
-			displayValue = Integer.toOctalString(Integer.parseInt(displayValue));
-		}
-		if(currentSystem.equals("HEX") && changingSystem.equals("DEC")) {
-			displayValue = Integer.toString(Integer.parseInt(displayValue,16));
-		}
-		if(currentSystem.equals("HEX") && changingSystem.equals("BIN")) {
-			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue,16));
-		}
-		if(currentSystem.equals("HEX") && changingSystem.equals("OCT")) {
-			displayValue = Integer.toOctalString(Integer.parseInt(displayValue,16));
-		}
-		if(currentSystem.equals("BIN") && changingSystem.equals("DEC")) {
-			displayValue = Integer.toString(Integer.parseInt(displayValue,2));
-		}
-		if(currentSystem.equals("BIN") && changingSystem.equals("HEX")) {
-			displayValue = Integer.toHexString(Integer.parseInt(displayValue,2)).toUpperCase();
-		}
-		if(currentSystem.equals("BIN") && changingSystem.equals("OCT")) {
-			displayValue = Integer.toOctalString(Integer.parseInt(displayValue,2));
-		}
-		if(currentSystem.equals("OCT") && changingSystem.equals("DEC")) {
-			displayValue = Integer.toString(Integer.parseInt(displayValue,8));
-		}
-		if(currentSystem.equals("OCT") && changingSystem.equals("HEX")) {
-			displayValue = Integer.toHexString(Integer.parseInt(displayValue,8)).toUpperCase();
-		}
-		if(currentSystem.equals("OCT") && changingSystem.equals("BIN")) {
-			displayValue = Integer.toBinaryString(Integer.parseInt(displayValue,8));
-		}
-		
-		mathSystem = changingSystem;
-	}
+	
 	
 	/**
 	 * The '=' button was pressed.
@@ -156,7 +117,11 @@ public class CalcEngine {
 		// so ensure that we really have a left operand, an operator
 		// and a right operand.
 		try {
-			displayValue = "" + termEvaluator.evaluate(termEvaluator.infixToPostfix(displayValue));
+			if (mathSystem.equals("HEX")) {
+				displayValue = Integer.toHexString(Integer.parseInt("" + termEvaluator.evaluate(termEvaluator.infixToPostfix(displayValue))));
+				} else {
+				displayValue = "" + termEvaluator.evaluate(termEvaluator.infixToPostfix(displayValue));
+				}
 		} catch (InvalidInfixString e) {
 			displayValue = "Not a valid Term!";
 		}
@@ -166,8 +131,6 @@ public class CalcEngine {
 	 * The 'C' (clear) button was pressed. Reset everything to a starting state.
 	 */
 	public void clear() {
-		lastOperator = '?';
-		haveLeftOperand = false;
 		buildingDisplayValue = false;
 		displayValue = "0";
 	}
@@ -192,16 +155,8 @@ public class CalcEngine {
 	 * @return The version number of this engine.
 	 */
 	public String getVersion() {
-		return "Version 1.0";
+		return "Version 2.0";
 	}
 
-	/**
-	 * Report an error in the sequence of keys that was pressed.
-	 */
-	private void keySequenceError() {
-		System.out.println("A key sequence error has occurred.");
-		// Reset everything.
-		clear();
-	}
 
 }
