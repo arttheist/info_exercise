@@ -75,12 +75,9 @@ public class UserInterface
 	        addRadioButton(buttonPanel, "HEX", false);
 	        addRadioButton(buttonPanel, "BIN", false);
 	        addRadioButton(buttonPanel, "OCT", false);
+            buttonPanel.add(new JLabel(" "));
+
 	        
-	        // add Button for Postfix
-	        JCheckBox checkButton = new JCheckBox("POSTFIX");
-	        checkButton.addActionListener(this);
-	        buttonPanel.add(checkButton);
-	        checkButton.setSelected(false);
 
 	        // add Buttons for Hex
 	        addHexButton(buttonPanel, "D");
@@ -220,9 +217,7 @@ public class UserInterface
         	String operator = command;
         	calc.operatorPressed(operator);
         }
-        else if(command.equals("POSTFIX")){
-        	calc.postfix();
-        }
+        
         else if(command.equals("HEX")){
         	enableHex();
         	enableDec();
