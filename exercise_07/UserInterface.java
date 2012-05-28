@@ -96,7 +96,7 @@ public class UserInterface
             addDecButton(buttonPanel, "8");
             addDecButton(buttonPanel, "9");
             buttonPanel.add(new JLabel(" "));
-            addButton(buttonPanel, "x");
+            addButton(buttonPanel, "*");
             
             addOctButton(buttonPanel, "4");
             addOctButton(buttonPanel, "5");
@@ -211,7 +211,7 @@ public class UserInterface
         }
         else if(command.equals("+") ||
                 command.equals("-") ||
-                command.equals("x") ||
+                command.equals("*") ||
                 command.equals("/") ||
                 command.equals("^")) {
         	String operator = command;
