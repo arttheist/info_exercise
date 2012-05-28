@@ -59,6 +59,10 @@ public class CalcEngine {
 		return displayValue;
 	}
 
+	public void setDisplayValue(String s) {
+		displayValue = s;
+	}
+
 	/**
 	 * A number button was pressed. Either start a new operand, or incorporate
 	 * this number as the least significant digit of an existing one.
