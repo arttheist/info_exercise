@@ -1,9 +1,10 @@
-package exercise_06;
+package test.exercise_06;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
+
+import exercise_06.*;
 
 public class StackTest {
 	private Stack<Integer> stack = new Stack<Integer>();
