@@ -212,6 +212,14 @@ public class UserInterface
             String number = command;
             calc.numberPressed(number);
         }
+        else if(command.equals("+") ||
+                command.equals("-") ||
+                command.equals("x") ||
+                command.equals("/") ||
+                command.equals("^")) {
+        	String operator = command;
+        	calc.operatorPressed(operator);
+        }
         else if(command.equals("HEX")){
         	enableHex();
         	enableDec();
@@ -236,18 +244,7 @@ public class UserInterface
         	enableOct();
         	calc.changeSystem("OCT", calc.getMathSystem());
         }
-        else if(command.equals("+")) {
-            calc.plus();
-        }
-        else if(command.equals("-")) {
-            calc.minus();
-        }
-        else if(command.equals("x")) {
-            calc.multiply();
-        }
-        else if(command.equals("/")) {
-            calc.divide();
-        }
+        
         else if(command.equals("=")) {
             calc.equals();
         }

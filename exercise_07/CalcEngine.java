@@ -12,7 +12,9 @@ public class CalcEngine {
 
 	// Are we already building a value in the display, or will the
 	// next digit be the first of a new one?
-	private boolean buildingDisplayValue;
+	private boolean buildingDisplayValue = true;
+	// next operator is not behind another operator
+	private boolean operatorDisplay = true;
 	// Has a left operand already been entered (or calculated)?
 	private boolean haveLeftOperand;
 	// The most recent operator that was entered.
@@ -70,13 +72,27 @@ public class CalcEngine {
 		if (buildingDisplayValue) {
 			// Incorporate this digit.
 			displayValue += number;
+			buildingDisplayValue = false;
+			operatorDisplay = true;
 		} else {
 			// Start building a new number.
-			displayValue = number;
-			buildingDisplayValue = true;
+			displayValue = displayValue.substring(0,displayValue.length()-1);
+			displayValue += number;
+			operatorDisplay = true;
 		}
 	}
 	
+	public void operatorPressed(String operator) {
+		if (operatorDisplay) {
+			displayValue += operator;
+			operatorDisplay = false;
+			buildingDisplayValue = true;
+		} else {
+			displayValue = displayValue.substring(0,displayValue.length()-1);
+			displayValue += operator;
+			buildingDisplayValue = true;
+		}
+	}
 
 
 	/**
@@ -127,34 +143,7 @@ public class CalcEngine {
 	}
 	
 	
-	/**
-	 * The 'plus' button was pressed.
-	 */
-	public void plus() {
-		applyOperator('+');
-	}
-
-	/**
-	 * The 'minus' button was pressed.
-	 */
-	public void minus() {
-		applyOperator('-');
-	}
-
-// new Methods for pressing multiply and divide
-	/**
-	 * The 'multiply' button was pressed.
-	 */
-	public void multiply() {
-		applyOperator('*');
-	}
 	
-	/**
-	 * The 'divide' button was pressed.
-	 */
-	public void divide() {
-		applyOperator('/');
-	}
 	
 	/**
 	 * The '=' button was pressed.
@@ -205,7 +194,7 @@ public class CalcEngine {
 	 * @return The version number of this engine.
 	 */
 	public String getVersion() {
-		return "Version 1.0";
+		return "Version 2.0";
 	}
 
 	/**
