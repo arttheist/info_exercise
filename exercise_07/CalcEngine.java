@@ -12,9 +12,7 @@ public class CalcEngine {
 
 	// Are we already building a value in the display, or will the
 	// next digit be the first of a new one?
-	private boolean buildingDisplayValue = true;
-	// next operator is not behind another operator
-	private boolean operatorDisplay = true;
+	private boolean buildingDisplayValue;
 	// Has a left operand already been entered (or calculated)?
 	private boolean haveLeftOperand;
 	// The most recent operator that was entered.
@@ -72,27 +70,14 @@ public class CalcEngine {
 		if (buildingDisplayValue) {
 			// Incorporate this digit.
 			displayValue += number;
-			buildingDisplayValue = false;
-			operatorDisplay = true;
 		} else {
 			// Start building a new number.
-			displayValue = displayValue.substring(0,displayValue.length()-1);
-			displayValue += number;
-			operatorDisplay = true;
+			displayValue = number;
+			buildingDisplayValue = true;
 		}
 	}
 	
-	public void operatorPressed(String operator) {
-		if (operatorDisplay) {
-			displayValue += operator;
-			operatorDisplay = false;
-			buildingDisplayValue = true;
-		} else {
-			displayValue = displayValue.substring(0,displayValue.length()-1);
-			displayValue += operator;
-			buildingDisplayValue = true;
-		}
-	}
+
 
 	/**
 	 * A MathSystem button was pressed
@@ -142,7 +127,34 @@ public class CalcEngine {
 	}
 	
 	
+	/**
+	 * The 'plus' button was pressed.
+	 */
+	public void plus() {
+		applyOperator('+');
+	}
+
+	/**
+	 * The 'minus' button was pressed.
+	 */
+	public void minus() {
+		applyOperator('-');
+	}
+
+// new Methods for pressing multiply and divide
+	/**
+	 * The 'multiply' button was pressed.
+	 */
+	public void multiply() {
+		applyOperator('*');
+	}
 	
+	/**
+	 * The 'divide' button was pressed.
+	 */
+	public void divide() {
+		applyOperator('/');
+	}
 	
 	/**
 	 * The '=' button was pressed.
@@ -170,12 +182,7 @@ public class CalcEngine {
 		lastOperator = '?';
 		haveLeftOperand = false;
 		buildingDisplayValue = false;
-		operatorDisplay = true;
 		displayValue = "0";
-	}
-	
-	public void postfix() {
-		
 	}
 	
 	/**
@@ -198,7 +205,7 @@ public class CalcEngine {
 	 * @return The version number of this engine.
 	 */
 	public String getVersion() {
-		return "Version 2.0";
+		return "Version 1.0";
 	}
 
 	/**
@@ -211,120 +218,6 @@ public class CalcEngine {
 		} catch (InvalidInfixString e) {
 			displayValue = "Not a valid Term!";
 		}
-		/*
-		if (mathSystem.equals("DEC")) {
-			switch (lastOperator) {
-			case '+':
-				displayValue = Integer.toString(Integer.parseInt(leftOperand) + (Integer.parseInt(displayValue)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '-':
-				displayValue = Integer.toString(Integer.parseInt(leftOperand) - (Integer.parseInt(displayValue)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-	// new cases for multiply and divide		
-			case '*':
-				displayValue = Integer.toString(Integer.parseInt(leftOperand) * (Integer.parseInt(displayValue)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '/':
-				displayValue = Integer.toString(Integer.parseInt(leftOperand) / (Integer.parseInt(displayValue)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			default:
-				keySequenceError();
-				break;
-			}
-		}
-		if (mathSystem.equals("HEX")) {
-			switch (lastOperator) {
-			case '+':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) + (Integer.parseInt(displayValue,16))).toUpperCase();
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '-':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) - (Integer.parseInt(displayValue,16))).toUpperCase();
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-	// new cases for multiply and divide		
-			case '*':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) * (Integer.parseInt(displayValue,16))).toUpperCase();
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '/':
-				displayValue = Integer.toHexString(Integer.parseInt(leftOperand,16) / (Integer.parseInt(displayValue,16))).toUpperCase();
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			default:
-				keySequenceError();
-				break;
-			}
-		}
-		if (mathSystem.equals("BIN")) {
-			switch (lastOperator) {
-			case '+':
-				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) + (Integer.parseInt(displayValue)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '-':
-				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) - (Integer.parseInt(displayValue)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-	// new cases for multiply and divide		
-			case '*':
-				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) * (Integer.parseInt(displayValue,2)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '/':
-				displayValue = Integer.toBinaryString(Integer.parseInt(leftOperand,2) / (Integer.parseInt(displayValue,2)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			default:
-				keySequenceError();
-				break;
-			}
-		}
-		if (mathSystem.equals("OCT")) {
-			switch (lastOperator) {
-			case '+':
-				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) + (Integer.parseInt(displayValue,8)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '-':
-				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) - (Integer.parseInt(displayValue,8)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-	// new cases for multiply and divide		
-			case '*':
-				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) * (Integer.parseInt(displayValue,8)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			case '/':
-				displayValue = Integer.toOctalString(Integer.parseInt(leftOperand,8) / (Integer.parseInt(displayValue,8)));
-				haveLeftOperand = true;
-				leftOperand = displayValue;
-				break;
-			default:
-				keySequenceError();
-				break;
-			}
-		}
-		*/
 	}
 
 	/**

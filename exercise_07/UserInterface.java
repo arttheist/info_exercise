@@ -218,10 +218,6 @@ public class UserInterface
                 command.equals("/") ||
                 command.equals("^")) {
         	String operator = command;
-        	calc.operatorPressed(operator);
-        }
-        else if(command.equals("POSTFIX")){
-        	calc.postfix();
         }
         else if(command.equals("HEX")){
         	enableHex();
