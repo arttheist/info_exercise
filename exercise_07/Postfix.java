@@ -90,36 +90,37 @@ public class Postfix {
 	}
 	
 	private static boolean isValidInfix(String ifx) {
-		char[] chars = ifx.toCharArray();
-		int p = 0;
-		for(int i = 0; i < chars.length; i++) {
-			if(!ifx.matches("[()0-9+*//-]")) {
-				switch (chars[i]) {
-					case '(' :
-						p -= 1;
-						break;
-					case ')' :
-						p += 1;
-						break;
-					default :
-						boolean isNumber = false;
-						if(String.valueOf(chars[i]).matches("[0-9]"))
-							isNumber = true;
-						try {
-							if(((isNumber && String.valueOf(chars[i+1]).matches("[0-9]")) || (!isNumber && !String.valueOf(chars[i+1]).matches("[0-9]"))) && chars[i+1] != '(')
-								return false;
-						} catch (Exception e) {}
-						break;
-				}
-			} else {
-				return false;
-			}
-		}
-		if(p == 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return true;
+//		char[] chars = ifx.toCharArray();
+//		int p = 0;
+//		for(int i = 0; i < chars.length; i++) {
+//			if(!ifx.matches("[()0-9+*//-]")) {
+//				switch (chars[i]) {
+//					case '(' :
+//						p -= 1;
+//						break;
+//					case ')' :
+//						p += 1;
+//						break;
+//					default :
+//						boolean isNumber = false;
+//						if(String.valueOf(chars[i]).matches("[0-9]"))
+//							isNumber = true;
+//						try {
+//							if(((isNumber && String.valueOf(chars[i+1]).matches("[0-9]")) || (!isNumber && !String.valueOf(chars[i+1]).matches("[0-9]"))) && chars[i+1] != '(')
+//								return false;
+//						} catch (Exception e) {}
+//						break;
+//				}
+//			} else {
+//				return false;
+//			}
+//		}
+//		if(p == 0) {
+//			return true;
+//		} else {
+//			return false;
+//		}
 	}
 	
 	public static String infixToPostfix (String ifx) throws InvalidInfixString {

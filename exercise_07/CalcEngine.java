@@ -94,7 +94,6 @@ public class CalcEngine {
 		}
 	}
 
-
 	/**
 	 * A MathSystem button was pressed
 	 * @param changingSystem The MathSystem that was pressed
