@@ -4,7 +4,7 @@ package exercise_07;
  * The main part of the calculator doing the calculations.
  * 
  * @author Till Leinen & Rene Vos
- * @version 2.0
+ * @version 3.0
  */
 public class CalcEngine {
 	// The calculator's state is maintained in three fields:
