@@ -77,8 +77,6 @@ public class CalcEngine {
 		}
 	}
 	
-
-
 	/**
 	 * A MathSystem button was pressed
 	 * @param changingSystem The MathSystem that was pressed
@@ -126,36 +124,6 @@ public class CalcEngine {
 		mathSystem = changingSystem;
 	}
 	
-	
-	/**
-	 * The 'plus' button was pressed.
-	 */
-	public void plus() {
-		applyOperator('+');
-	}
-
-	/**
-	 * The 'minus' button was pressed.
-	 */
-	public void minus() {
-		applyOperator('-');
-	}
-
-// new Methods for pressing multiply and divide
-	/**
-	 * The 'multiply' button was pressed.
-	 */
-	public void multiply() {
-		applyOperator('*');
-	}
-	
-	/**
-	 * The 'divide' button was pressed.
-	 */
-	public void divide() {
-		applyOperator('/');
-	}
-	
 	/**
 	 * The '=' button was pressed.
 	 */
@@ -163,16 +131,13 @@ public class CalcEngine {
 		// This should completes the building of a second operand,
 		// so ensure that we really have a left operand, an operator
 		// and a right operand.
-		calculateResult();
-		/*
-		if (haveLeftOperand && lastOperator != '?' && buildingDisplayValue) {
-			calculateResult();
-			lastOperator = '?';
-			buildingDisplayValue = false;
-		} else {
-			keySequenceError();
+		try {
+			displayValue = "" + termEvaluator.infixToPostfix(displayValue);
+		} catch (InvalidInfixString e) {
+			displayValue = "Not a valid Term!";
+		} finally {
+			System.out.println("equals called");
 		}
-		*/
 	}
 
 	/**
@@ -206,46 +171,6 @@ public class CalcEngine {
 	 */
 	public String getVersion() {
 		return "Version 1.0";
-	}
-
-	/**
-	 * Combine leftOperand, lastOperator, and the current display value. The
-	 * result becomes both the leftOperand and the new display value.
-	 */
-	private void calculateResult() {
-		try {
-			displayValue = "" + termEvaluator.evaluate(termEvaluator.infixToPostfix(displayValue));
-		} catch (InvalidInfixString e) {
-			displayValue = "Not a valid Term!";
-		}
-	}
-
-	/**
-	 * Apply an operator.
-	 * 
-	 * @param operator
-	 *            The operator to apply.
-	 */
-	private void applyOperator(char operator) {
-		// If we are not in the process of building a new operand
-		// then it is an error, unless we have just calculated a
-		// result using '='.
-		if (!buildingDisplayValue && !(haveLeftOperand && lastOperator == '?')) {
-			keySequenceError();
-			return;
-		}
-
-		if (lastOperator != '?') {
-			// First apply the previous operator.
-			calculateResult();
-		} else {
-			// The displayValue now becomes the left operand of this
-			// new operator.
-			haveLeftOperand = true;
-			leftOperand = displayValue;
-		}
-		lastOperator = operator;
-		buildingDisplayValue = false;
 	}
 
 	/**
