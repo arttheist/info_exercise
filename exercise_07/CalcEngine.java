@@ -93,6 +93,10 @@ public class CalcEngine {
 			buildingDisplayValue = true;
 		}
 	}
+	
+	public void bracketPressed(String bracket) {
+		displayValue+=bracket;
+	}
 
 	/**
 	 * A MathSystem button was pressed

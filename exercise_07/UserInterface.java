@@ -217,7 +217,11 @@ public class UserInterface
         	String operator = command;
         	calc.operatorPressed(operator);
         }
-        
+        else if(command.equals("(") ||
+        		command.equals(")")) {
+        	String bracket = command;
+        	calc.bracketPressed(bracket);
+        }
         else if(command.equals("HEX")){
         	enableHex();
         	enableDec();
