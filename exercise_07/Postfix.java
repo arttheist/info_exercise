@@ -4,24 +4,6 @@ import java.io.*;
 
 public class Postfix {
 
-	public static void main(String[] args) {
-		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("please Input a Term: ");
-		String line = null;
-		try {
-			while ((line = console.readLine()) != null) {
-				try {
-					System.out.println("The Result of the Term is: " + evaluate(infixToPostfix(line)));
-				} catch (InvalidInfixString e) {
-					System.out.println("Not a Valid String!");
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Ihre Eingabe war: " + line);
-	}
-	
 	// A Method that takes a String representing a postfix expression and determines the value.
 	public static int evaluate (String pfx){
 		
