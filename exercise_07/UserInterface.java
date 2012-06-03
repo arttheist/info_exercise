@@ -63,7 +63,7 @@ public class UserInterface
         display = new JTextField();
         contentPane.add(display, BorderLayout.NORTH);
         
-        JPanel buttonPanel = new JPanel(new GridLayout(7, 5));
+        JPanel buttonPanel = new JPanel(new GridLayout(6, 5));
 	 
         
  // add Buttons for the different Math Formats
@@ -76,41 +76,35 @@ public class UserInterface
 	        
 
 	        // add Buttons for Hex
-            buttonPanel.add(new JLabel(" "));
-            buttonPanel.add(new JLabel(" "));
-            buttonPanel.add(new JLabel(" "));
+            addButton(buttonPanel, "DEL");
             addButton(buttonPanel, "?");
-            addButton(buttonPanel, "+");
-
-            buttonPanel.add(new JLabel(" "));
-            buttonPanel.add(new JLabel(" "));
             buttonPanel.add(new JLabel(" "));
             addButton(buttonPanel, "(");
-            addButton(buttonPanel, "-");
+            addButton(buttonPanel, "+");
             
         	addButton(buttonPanel, "7");
             addButton(buttonPanel, "8");
             addButton(buttonPanel, "9");
             addButton(buttonPanel, ")");
-            addButton(buttonPanel, "*");
+            addButton(buttonPanel, "-");
             
             addButton(buttonPanel, "4");
             addButton(buttonPanel, "5");
             addButton(buttonPanel, "6");
             buttonPanel.add(new JLabel(" "));
-            addButton(buttonPanel, "/");
+            addButton(buttonPanel, "*");
             
             addButton(buttonPanel, "1");
             addButton(buttonPanel, "2");
             addButton(buttonPanel, "3");
             buttonPanel.add(new JLabel(" "));
-            addButton(buttonPanel, "^");
+            addButton(buttonPanel, "/");
             
             addButton(buttonPanel, "0");
             buttonPanel.add(new JLabel(" "));
             buttonPanel.add(new JLabel(" "));
-            addButton(buttonPanel, "DEL");
             addButton(buttonPanel, "=");
+            addButton(buttonPanel, "^");
             
         contentPane.add(buttonPanel, BorderLayout.CENTER);
 
