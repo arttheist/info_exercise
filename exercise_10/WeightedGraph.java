@@ -48,4 +48,7 @@ public class WeightedGraph {
 		throw new EdgeNotFoundException();
 	}
 	
+	public ArrayList<Vertex> getAllVertices() {
+		return vertexList;
+	}
 }
