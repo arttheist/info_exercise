@@ -5,7 +5,7 @@ public class Edge {
 	private Vertex first;
 	private Vertex second;
 	
-	public Edge(int weight, Vertex first, Vertex second) {
+	public Edge(Vertex first, Vertex second, int weight) {
 		this.weight = weight;
 		this.first = first;
 		this.second = second;
