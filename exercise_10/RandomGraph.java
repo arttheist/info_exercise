@@ -4,28 +4,25 @@ import java.util.*;
 
 public class RandomGraph {
 	
-	private WeightedGraph mightyGraph;
+	WeightedGraph mightyGraph = new WeightedGraph();
 	
-	public WeightedGraph getGraph() {
-		return mightyGraph;
-	}
+	
 
 	public RandomGraph(int numberOfVertex, int numberOfEdges) {
 		
+		char numbers1 = 'A';
+		char numbers2 = 'A';
+		
 		for (int i=0;i<numberOfVertex;i++) {
 			
-			char numbers1 = 'A';
-			char numbers2 = 'A';
-			
-			if (numbers2<'Z') {
+			String vertexName = Character.toString(numbers1)+Character.toString(numbers2);
+			mightyGraph.addVertex(vertexName);
+			numbers2++;
+		
+			if (numbers2=='Z') {
 				numbers1++;
 				numbers2='A';
 			}
-			
-			String vertexNumbers = Character.toString(numbers1)+Character.toString(numbers2);
-			mightyGraph.addVertex(vertexNumbers);
-			numbers2++;
-		
 		}
 		
 		Random generator = new Random();
@@ -43,6 +40,10 @@ public class RandomGraph {
 			mightyGraph.addEdge(firstVertex,secondVertex,randomWeight);
 		}
 		
+	}
+	
+	public WeightedGraph getGraph() {
+		return mightyGraph;
 	}
 	
 }
