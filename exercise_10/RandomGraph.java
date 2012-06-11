@@ -17,12 +17,14 @@ public class RandomGraph {
 			
 			String vertexName = Character.toString(numbers1)+Character.toString(numbers2);
 			mightyGraph.addVertex(vertexName);
-			numbers2++;
+			
 		
 			if (numbers2=='Z') {
 				numbers1++;
 				numbers2='A';
 			}
+			
+			numbers2++;
 		}
 		
 		Random generator = new Random();
