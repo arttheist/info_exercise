@@ -28,8 +28,8 @@ public class RandomGraph {
 		Random generator = new Random();
 		
 		for (int i = 0; i<numberOfEdges;i++) {
-			int rdm1 = generator.nextInt(mightyGraph.getAllVertices().size())+1;
-			int rdm2 = generator.nextInt(mightyGraph.getAllVertices().size())+1;
+			int rdm1 = generator.nextInt(mightyGraph.getAllVertices().size());
+			int rdm2 = generator.nextInt(mightyGraph.getAllVertices().size());
 			
 			while (rdm1 == rdm2)
 					rdm2 = generator.nextInt(mightyGraph.getAllVertices().size())+1;
