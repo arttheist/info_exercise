@@ -9,10 +9,19 @@ public class RandomGraph {
 	public RandomGraph(int numberOfVertex, int numberOfEdges) {
 		
 		for (int i=0;i<numberOfVertex;i++) {
-			char numbers = 'A';
-			String vertexNumbers = Character.toString(numbers);
+			
+			char numbers1 = 'A';
+			char numbers2 = 'A';
+			
+			if (numbers2<'Z') {
+				numbers1++;
+				numbers2='A';
+			}
+			
+			String vertexNumbers = Character.toString(numbers1)+Character.toString(numbers2);
 			mightyGraph.addVertex(vertexNumbers);
-			numbers++;
+			numbers2++;
+		
 		}
 		
 		Random generator = new Random();
