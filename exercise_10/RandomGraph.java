@@ -6,6 +6,10 @@ public class RandomGraph {
 	
 	private WeightedGraph mightyGraph;
 	
+	public WeightedGraph getGraph() {
+		return mightyGraph;
+	}
+
 	public RandomGraph(int numberOfVertex, int numberOfEdges) {
 		
 		for (int i=0;i<numberOfVertex;i++) {
